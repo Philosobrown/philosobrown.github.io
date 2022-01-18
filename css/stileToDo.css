@@ -1,0 +1,181 @@
+html{
+  background: #ECEFF4;
+  user-select: none;
+}
+
+body {
+  font-family: Arial;
+  margin: 0;
+  min-width: 250px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #E5E9F0;
+  font-size: 18px;
+  transition: 0.2s;
+  
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #ECEFF4;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #D8DEE9;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #D8DEE9;
+  color: #2E3440;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #2E3440;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #BF616A;
+  color: white;
+}
+
+.nuovo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.nuovo:hover {
+  background-color: #A3BE8C;
+  color: white;
+}
+
+/* Style the header */
+.header {
+  background-color: #303443;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+input {
+  background-color: #ECEFF4;
+  margin: 0;
+  width: calc(100% - 72px);
+  height: 36px;
+  border: none;
+  border-radius: 0;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+  outline: 0;
+  text-align: center;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  background: #D8DEE9;
+  height: 36px;
+  width: 36px;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+/* Style the "Remove" button */
+.rmvBtn {
+  padding: 10px;
+  height: 36px;
+  width: 36px;
+  background: #D8DEE9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.rmvBtn:hover {
+  background-color: #bbb;
+}
+
+::placeholder {
+	text-align: center;
+}
+
+.bordo{
+  border-top: 3px solid;
+  border-top-color: #303443;
+}

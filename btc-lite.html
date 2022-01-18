@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Bitcoin</title>
+		<meta charset="utf-8">
+		<link rel="icon" href="./icone/btcIco.png">
+		<style type="text/css">
+			html {
+			    align-items: center;
+			    background-color: #ff9500;
+			    display: flex;
+			    font-family: "Inconsolata", monospace;
+			    height: 100%;
+			    justify-content: center;
+			    font-size: 5vh;
+			}
+
+			body {
+			    background-color: transparent;
+			    color: #ffffff;
+			    display: flex;
+			    flex-direction: column;
+			}
+		</style>
+	</head>
+	<body onload="ordineFunzioni();">
+		<table>
+				<td><div style="text-align: center;">1₿ vale</div></td>
+				<tr></tr>
+				<td><div id="valoreCoin" style="text-align: center;">Caricamento...</div></td>
+		</table>		
+		<script>
+			let intervallo;
+
+			function ripetiFunzione() {
+				intervallo = setInterval(richiestaValore, 60000);
+			}
+
+			function richiestaValore(){
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', 'https://api.coinbase.com/v2/prices/spot?currency=EUR', true);
+				xhr.onload = function () {
+					if (xhr.readyState === xhr.DONE) {
+						if (xhr.status === 200) {
+							var datiResponse=xhr.responseText;
+							var orario = new Date();
+							console.log(orario.getHours()+":"+orario.getMinutes());
+							console.log("Dati richiesti: "+datiResponse);
+							var datiResponseJSON = JSON.parse(datiResponse);
+							var drj = datiResponseJSON["data"]["amount"];
+							document.getElementById("valoreCoin").innerHTML = drj+"€";
+						}
+					}
+				};
+				xhr.send(null);
+			}
+
+			function ordineFunzioni(){
+				var prova=richiestaValore();
+				var tempo=ripetiFunzione();
+			}
+		</script>
+	</body>
+</html>

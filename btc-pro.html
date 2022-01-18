@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Bitcoin</title>
+		<meta charset="utf-8">
+		<link rel="icon" href="./icone/btcIco.png">
+		<style type="text/css">
+			html {
+			    align-items: center;
+			    background-color: #ff9500;
+			    display: flex;
+			    font-family: "Inconsolata", monospace;
+			    height: 100%;
+			    justify-content: center;
+			    font-size: 5vh;
+			    color: #ffffff;
+			}
+
+			body {
+			    display: flex;
+			    flex-direction: column;
+			    padding-right: 5px;
+			    padding-left: 5px;
+			}
+
+			input.numeri {
+				width: 85%;
+			   	background: transparent;
+				color: transparent;
+			    text-shadow: 0 0 0 #ffffff;
+			    line-height: 2em;
+			    border: none;
+			    border-bottom: dashed 0.5vh #ffffff;
+			    border-radius: 0px;
+			    outline: none;
+			    padding: 0px;
+			    font-family: "Inconsolata", monospace;
+				font-size: 5vh;
+			}
+
+			::placeholder {
+				color: transparent;
+			    text-shadow: 0 0 0 #ffffff;
+			}
+
+			.centro {
+				text-align: center;
+			}
+
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+			input[type=number] {
+				-moz-appearance: textfield;
+			}
+
+			fieldset {
+				border: 4px solid;
+			}
+
+			.menu {
+				position: absolute;
+
+				bottom: 2vh;
+				align-self: center;
+				font-size: 10vh;
+			}
+
+			#menuNascosto {
+				display: none;
+			}
+
+			hr {
+				border: none;
+				border-top: 0.5vh solid;
+			}
+
+			.bottoni {
+				background-color: #ff9500;
+			    color: #ffffff;
+			    border: 0.5vh solid;
+   			    font-size: 4vh;
+   			    margin-top: 10px;
+   			    outline: 0;
+   			    transition-duration: 0.4s;
+			}
+
+			.bottoni:hover {
+				background: #ffffff;
+				color: #ff9500;
+				border: 0.5vh solid;
+				border-color: #ffffff;
+			}
+		</style>
+		<script type="text/javascript">
+			function inizializzaStorage(){
+				if (typeof(localStorage.saldoBtcLF)=="undefined") {
+					localStorage.saldoBtcLF="";
+				}
+			}
+
+			function resetStorageUtenti(){
+				localStorage.saldoBtcLF="0";
+				alert("Saldo a 0!");
+			}
+
+			function stampaStorageSalvato(){
+				s=new String("<fieldset><legend>Saldo BTC</legend>"+localStorage.saldoBtcLF+"</fieldset>").replace(/\"/g, "");
+				document.getElementById("idStampaStorage").innerHTML=s;
+			}
+
+			function inserisciSoldi(){
+				var btc = document.getElementById("cmpIn").value;
+				localStorage.saldoBtcLF = JSON.stringify(btc)
+			}
+		</script>
+		<script type="text/javascript" src="./librerie/jquery-3.5.1.min.js"></script>
+	</head>
+	<body onload="inizializzaStorage(); ordineFunzioni();">
+
+		<div id="menu" class="centro menu">&#11096;</div>
+
+		<table>
+				<td><div class="centro">1₿ vale</div></td>
+				<tr></tr>
+				<td><div id="valoreCoin" class="centro">Caricamento...</div></td>
+				<tr></tr>
+				<td><div class="centro">Il tuo portafoglio vale</div></td>
+				<tr></tr>
+				<td><div id="valoreWallet" class="centro"></div></td>
+				<tr></tr>
+				<td class="centro">
+					<div id="vistaStorage" class="centro">Caricamento...</div>
+				</td>
+				<tr></tr>
+				<td><hr></td>
+				<tr></tr>
+				<td id="menuNascosto" class="centro">
+					<input type="number" id="cmpIn" class="centro numeri" onchange="inserisciSoldi();">
+					<input type="button" class="bottoni" name="stampaStorage" value="Saldo" onclick="stampaStorageSalvato();">
+					<input type="button" class="bottoni" name="resetStorage" value="Reset" onclick="resetStorageUtenti();">
+				</td>
+				<tr></tr>
+				<td class="centro">
+					<div id="idStampaStorage" class="centro"></div>
+				</td>
+		</table>
+
+		<script>
+			$(document).ready(function(){
+				$("#menu").click(function() {
+					$("#menuNascosto").toggle();
+				});
+			});
+
+			let intervallo;
+
+			function ripetiFunzione() {
+				intervallo = setInterval(richiestaValore, 60000);
+			}
+
+			function richiestaValore(){
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', 'https://api.coinbase.com/v2/prices/spot?currency=EUR', true);
+				xhr.onload = function () {
+					if (xhr.readyState === xhr.DONE) {
+						if (xhr.status === 200) {
+							var datiResponse=xhr.responseText;
+							var orario = new Date();
+							console.log(orario.getHours()+":"+orario.getMinutes());
+							console.log("Dati richiesti: "+datiResponse);
+							var datiResponseJSON = JSON.parse(datiResponse);
+							var drj = datiResponseJSON["data"]["amount"];
+							document.getElementById("valoreCoin").innerHTML = drj+"€";
+							console.log("drj ora: "+drj);
+
+							s1=new Number(JSON.parse(localStorage.saldoBtcLF));
+							s2=new Number(drj);
+
+							var s3=Math.round(((s1*s2) + Number.EPSILON) * 100) / 100;
+
+							s=new String(s3+"€").replace(/\"/g, "");
+							document.getElementById("vistaStorage").innerHTML=s;
+						}
+					}
+				};
+				xhr.send(null);
+			}
+
+			function ordineFunzioni(){
+				var prova=richiestaValore();
+				var tempo=ripetiFunzione();
+			}
+
+			var inputInvio = document.getElementById("cmpIn");
+			inputInvio.addEventListener("keyup", function(event) {
+				if (event.keyCode === 13) {
+					event.preventDefault();
+					location.reload(true);
+				}
+			});
+		</script>
+	</body>
+</html>

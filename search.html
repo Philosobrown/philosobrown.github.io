@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ricerca</title>
+  <link rel="icon" href="./icone/search.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+     html {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      justify-content: center;
+      margin: 0;
+      background-color: #303443;
+    }
+
+    form{
+      display: grid;
+      place-items: center;
+    }
+
+    input{
+      width: max(80%);
+      text-align: center;
+      background-color: #4C566A;
+      font-size: 7vh;
+      color: #2E3440;
+      outline: 0;
+      caret-color: auto;
+      border-radius: 0.5vh;
+      border: 0;
+      border-bottom: 1vh solid #3B4252;
+      border-style: solid;
+    }
+
+    input:focus::placeholder {
+      color: transparent;
+    }
+
+    ::placeholder{
+      color: #2E3440;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <form action="https://www.google.it/search" method="get" autocomplete="off" class="center">
+    <input type="text" name="q" placeholder="Ricerca" spellcheck="false">
+  </form>
+
+</body>
+<!--
+  Le icone sono di https://icons8.it/
+-->
+</html>

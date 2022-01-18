@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Calorie</title>
+		<meta charset="utf-8">
+		<link rel="icon" href="./icone/iconaGithub.png">
+		<style type="text/css">
+			:root {
+				--testoDark: #ECEFF4;
+				--bgDark: #303443;
+			}
+
+			html {
+				align-items: center;
+				background-color: #303443;
+				color: #c5c8c6;
+				display: flex;
+				font: 22px/1 "Inconsolata", monospace;
+				font-weight: 500;
+				height: 100%;
+				justify-content: center;
+			}
+			
+			body {
+				display: flex;
+				flex-direction: column;
+			}
+
+			body {
+				font-family: Arial;
+				font-size: 100px;
+				color: var(--testoDark);
+				background-color: var(--bgDark);
+			}
+			
+			table {
+				width: 100%;
+				margin: auto;
+			}
+
+			td, input {
+				font-size: inherit;
+				width: 50%;
+				color: inherit;
+				background-color: var(--bgDark);
+				text-align: center;
+			}
+
+			td {
+				padding-top: 2vh;
+			}
+
+			input {
+				border: solid 0.5vh;
+				outline: 0;
+			}
+			
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+			
+			input[type=number] {
+				-moz-appearance: textfield;
+			}
+
+			button {
+				color: var(--bgDark);
+				width: 45%;
+				font-size: inherit;
+				background-color: var(--testoDark);
+				transition-duration: 0.4s;
+				border: solid;
+				border-color: var(--testoDark);
+			}
+
+			button:hover{
+				color: var(--testoDark);
+				background-color: var(--bgDark);
+				border-color: var(--testoDark);
+			}
+
+		</style>
+	</head>
+	<body>			
+			<table>
+				<td>Calorie per 100g</td>
+				<tr></tr>
+				<td><input type="number" class="range" id="caloriePer100" value="100"></td>
+				<tr></tr>
+				<td class="spazio">Peso</td>
+				<tr></tr>
+				<td class="spazio"><input type="number" class="range" id="peso" value="100"></td>
+				<tr></tr>
+				<td><button onclick="calorieTab1()" class="spazio">Calcola</button></td>
+				<tr></tr>
+				<td id="risultatoID1" class="spazio">Risultato</td>
+			</table>
+		<script>
+			
+			function calorieTab1() {
+				var a = Number(document.getElementById('caloriePer100').value);
+				var b = Number(document.getElementById('peso').value);
+				var risultato = (a*b)/100;
+				document.getElementById("risultatoID1").innerHTML=+risultato;
+			}
+
+		</script>
+	</body>
+</html>

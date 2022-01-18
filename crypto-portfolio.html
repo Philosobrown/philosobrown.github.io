@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Crypto</title>
+		<meta charset="utf-8">
+		<link rel="icon" href="./icone/btcIco.png">
+		<style type="text/css">
+			html {
+				background-color: #303443;
+			    font-family: "Calibri";
+			    font-size: 10vh;
+			    color: #ffffff;
+				user-select: none;
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			li {
+				list-style-type: none;
+				padding: 20px;
+				border-bottom: #303443 solid 5px;
+			}
+
+			.centro {
+				text-align: center;
+			}
+
+		</style>
+
+	</head>
+	<body onload="ordineFunzioni();">
+		<ul>
+			<li><div id="valoreBTC">Caricamento...</div></li>
+			<li><div id="valoreETH">Caricamento...</div></li>
+			<li><div id="valoreADA">Caricamento...</div></li>
+			<li><div id="valoreSOL">Caricamento...</div></li>
+			<li><div id="valoreDOT">Caricamento...</div></li>
+		</ul>
+
+		<script>
+			let intervallo;
+
+			function ripetiFunzione() {
+				intervallo = setInterval(richiestaValore, 60000);
+			}
+
+			function richiestaValore(){
+				var xhrBTC = new XMLHttpRequest();
+				xhrBTC.open('GET', 'https://api.coinbase.com/v2/prices/BTC-EUR/sell', true);
+				xhrBTC.onload = function () {
+					if (xhrBTC.readyState === xhrBTC.DONE) {
+						if (xhrBTC.status === 200) {
+							var datiResponse=xhrBTC.responseText;
+							var datiResponseJSON = JSON.parse(datiResponse);
+							var drj = datiResponseJSON["data"]["amount"];
+							document.getElementById("valoreBTC").innerHTML = "Bitcoin vale "+drj+"€";
+						}
+					}
+				};
+				xhrBTC.send(null);
+
+				var xhrETH = new XMLHttpRequest();
+				xhrETH.open('GET', 'https://api.coinbase.com/v2/prices/ETH-EUR/sell', true);
+				xhrETH.onload = function () {
+					if (xhrETH.readyState === xhrETH.DONE) {
+						if (xhrETH.status === 200) {
+							var datiResponse=xhrETH.responseText;
+							var datiResponseJSON = JSON.parse(datiResponse);
+							var drj = datiResponseJSON["data"]["amount"];
+							document.getElementById("valoreETH").innerHTML =  "Ethereum vale "+drj+"€";
+						}
+					}
+				};
+				xhrETH.send(null);
+
+				var xhrADA = new XMLHttpRequest();
+				xhrADA.open('GET', 'https://api.coinbase.com/v2/prices/ADA-EUR/sell', true);
+				xhrADA.onload = function () {
+					if (xhrADA.readyState === xhrADA.DONE) {
+						if (xhrADA.status === 200) {
+							var datiResponse=xhrADA.responseText;
+							var datiResponseJSON = JSON.parse(datiResponse);
+							var drj = datiResponseJSON["data"]["amount"];
+							document.getElementById("valoreADA").innerHTML =  "Cardano vale "+drj+"€";
+						}
+					}
+				};
+				xhrADA.send(null);
+
+				var xhrSOL = new XMLHttpRequest();
+				xhrSOL.open('GET', 'https://api.coinbase.com/v2/prices/SOL-EUR/sell', true);
+				xhrSOL.onload = function () {
+					if (xhrSOL.readyState === xhrSOL.DONE) {
+						if (xhrSOL.status === 200) {
+							var datiResponse=xhrSOL.responseText;
+							var datiResponseJSON = JSON.parse(datiResponse);
+							var drj = datiResponseJSON["data"]["amount"];
+							document.getElementById("valoreSOL").innerHTML =  "Solana vale "+drj+"€";
+						}
+					}
+				};
+				xhrSOL.send(null);
+
+				var xhrDOT = new XMLHttpRequest();
+				xhrDOT.open('GET', 'https://api.coinbase.com/v2/prices/DOT-EUR/sell', true);
+				xhrDOT.onload = function () {
+					if (xhrDOT.readyState === xhrDOT.DONE) {
+						if (xhrDOT.status === 200) {
+							var datiResponse=xhrDOT.responseText;
+							var datiResponseJSON = JSON.parse(datiResponse);
+							var drj = datiResponseJSON["data"]["amount"];
+							document.getElementById("valoreDOT").innerHTML =  "Polkadot vale "+drj+"€";
+						}
+					}
+				};
+				xhrDOT.send(null);
+			}
+
+			function ordineFunzioni(){
+				var prova=richiestaValore();
+				var tempo=ripetiFunzione();
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="icon" href="./icone/home.png">
+        <style>
+            :root {
+                --sfondo: #303443;
+                --testo: #D8DEE9;
+                --evidenziato: #5E81AC;
+            }
+
+            html {
+                background-color: var(--sfondo);
+                color: var(--testo);
+                font: 24px "Calibri";
+            }
+
+            body {
+                color: var(--testo);
+                flex-direction: column;
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+                padding: 2px;
+                padding-right: 5px;
+                padding-left: 5px;
+                transition-duration: 0.3s;
+            }
+
+            a:focus, a:hover {
+                color: var(--evidenziato);
+            }
+
+            fieldset {
+                border-style: solid;
+                border-color: var(--colore);
+                margin-top: 10px;
+                padding-top: 0px;
+            }
+
+            legend {
+                font-size: 28px;
+            }
+
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                margin-left:auto;
+                margin-right:auto;
+            }            
+
+            .wrapper {
+                margin-right: auto; 
+                margin-left:  auto;
+                max-width: 800px;
+                padding-right: 10px;
+                padding-left:  10px;
+            }
+
+            .centrato {
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body class="wrapper">
+        <h2 class="">Progetti GitHub</h2>
+        <ul>
+            <li>
+                <fieldset>
+                    <legend>
+                        <a href="./search.html">Search</a>
+                    </legend>
+                    Barra di ricerca minimale.
+                </fieldset>
+            </li>
+
+            <li>
+                <fieldset>
+                    <legend>
+                        <a href="./btc-lite.html">Btc tracker LITE</a>
+                    </legend>
+                    Strumento per conoscere l'attuale prezzo dei bitcoin.
+                </fieldset>
+            </li>
+
+            <li>
+                <fieldset>
+                    <legend>
+                        <a href="./btc-pro.html">Btc tracker PRO</a>
+                    </legend>
+                    Strumento per conoscere l'attuale prezzo dei bitcoin, con funzione di tracker del portafoglio.
+                </fieldset>
+            </li>
+
+            <li>
+                <fieldset>
+                    <legend>
+                        <a href="./calories.html">Contacalorie</a>
+                    </legend>
+                    Strumento per il conteggio di calorie.
+                </fieldset>
+            </li>
+
+            <li>
+                <fieldset>
+                    <legend>
+                        <a href="./crypto-portfolio.html">Portfolio</a>
+                    </legend>
+                    Strumento per tracking delle principali crypto.
+                </fieldset>
+            </li>
+
+            <li>
+                <fieldset>
+                    <legend>
+                        <a href="./note.html">Note</a>
+                    </legend>
+                    Strumento per prendere appunti.
+                </fieldset>
+            </li>
+        </ul>
+
+        <h5 class="centrato" style="color: #4C566A;">Tutto prodotto in casa con modico amore</h5>
+    </body>
+</html>

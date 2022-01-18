@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Note</title>
+  <link rel="icon" href="./icone/checked.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./css/stileNote.css">
+</head>
+
+<body onload="inizializzaStorageUtenti()">
+
+<div id="myDIV" class="header">
+  <span onclick="newElement()" id="addBtn" class="addBtn baseBtn">+</span>
+  <input type="text" id="myInput" placeholder="Aggiungi una nota">
+  <span onclick="openForm()" class="menuBtn baseBtn">M</span>
+</div>
+
+<div class="dataOggi" id="dataOggi"></div>
+
+<ul id="myUL"></ul>
+
+<div class="form-cancella nascosto" id="menuNascosto">
+  <button onclick="alertResetStorage()" id="rmvBtn" class="varioBtn baseBtn btnL">Reset</button>
+  <button onclick="editMode()" class="varioBtn baseBtn btnR">Edit</button>
+</div>
+
+<!--<div class="bordo"></div>-->
+
+<script>
+  var dOg = new Date();
+  var dataGiorno = dOg.getDate();
+  var dataMese = dOg.getMonth()+1;
+  var dataAnno = dOg.getFullYear();
+  var dataCompleta = dataGiorno+"."+dataMese+"."+dataAnno;
+  document.getElementById("dataOggi").innerHTML = dataCompleta;
+
+  // Aggiunge un notePB quando premi invio sulla barra di input
+  var inputNotePB = document.getElementById("myInput");
+  inputNotePB.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+     event.preventDefault();
+     document.getElementById("addBtn").click();
+    }
+  });
+
+  // Create a new list item when clicking on the "Add" button
+  function newElement() {
+    var li = document.createElement("li");
+    var oldItems = JSON.parse(localStorage.getItem('notePB'))||[];
+    var newItem = document.getElementById("myInput").value;
+    var t = document.createTextNode(newItem);
+    //console.log(newItem);
+
+    var controlloOggetto = "\\\""+newItem+"\\\"";
+    var storageAttuale = JSON.stringify(localStorage.notePB);
+
+    if (storageAttuale.includes(controlloOggetto)){
+      alert("Attività già presente");
+      document.getElementById("myInput").value = "";
+      return false;
+    }
+    if (newItem.includes("\"")){
+      newItem=newItem.replace(/\"/g, "''");
+    }
+    if (newItem === '') {
+      alert("Non hai scritto nulla");
+      return false;
+    }
+    oldItems.push(newItem);
+    localStorage.setItem('notePB', JSON.stringify(oldItems));
+    li.appendChild(t);
+    if (newItem === '') {
+      alert("Non hai scritto nulla");
+    } else {
+      window.location.reload();
+    }
+    document.getElementById("myInput").value = "";
+  }
+
+  function editMode() {
+    var elems = document.getElementsByClassName('close');
+    var elems2 = document.getElementsByClassName('classePdng');
+    for (var i=0;i<elems.length;i+=1){
+      elems[i].classList.toggle("nascosto");
+      elems2[i].classList.toggle("classePadding");
+    }
+  }
+
+  function inizializzaStorageUtenti(){
+    if (typeof(localStorage.notePB)=="undefined") {
+      localStorage.notePB="[]" ;
+    }
+    var ls=JSON.parse(localStorage.notePB);
+    var lsL=ls.length;
+    for (i = 0; i<lsL; i+1) {
+      var li = document.createElement("li");
+      var passata=JSON.stringify(ls[i]).replace(/\"/g, "");
+      //console.log(passata);
+
+      var t = document.createTextNode(passata);
+
+      const regexData = "(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{4}";
+      const foundData = passata.match(regexData);
+
+      if(foundData){
+        var vartData = document.createTextNode("📅 Data: "+foundData[0]+"\n");
+        li.appendChild(vartData);
+      }
+
+      const regexOra = "(0[1-9]|1[0-9]|2[0-3])\:([0-5][0-9])";
+      const foundOra = passata.match(regexOra);
+
+      if(foundOra){
+        var vartOra = document.createTextNode("🕑 Ora: "+foundOra[0]+"\n");
+        li.appendChild(vartOra);
+      }
+
+      if(foundData || foundOra){
+        var varDiv = document.createElement("hr");
+        li.appendChild(varDiv);
+      }
+
+      li.appendChild(t);
+      li.className="classePdng";
+      document.getElementById("myUL").appendChild(li);
+      var span = document.createElement("SPAN");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close nascosto";
+      span.appendChild(txt);
+      li.appendChild(span);
+      
+
+      // Elimina il notePB relativo
+      var close = document.getElementsByClassName("close");
+      var i;
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+          var contenuto = this.parentElement;
+          contenuto.style.display = "none";
+
+          var notePBAttuale = contenuto.textContent.replace("×", "");
+          
+          if(foundData){
+            console.log(notePBAttuale);
+            notePBAttuale = notePBAttuale.replace("📅 Data: ", "");
+            console.log(notePBAttuale);
+            notePBAttuale = notePBAttuale.replace(foundData[0], "");
+            console.log(notePBAttuale);
+            notePBAttuale = notePBAttuale.replace("\n", "");
+            console.log(notePBAttuale);
+          }
+
+          if(foundOra){
+            console.log(notePBAttuale);
+            notePBAttuale = notePBAttuale.replace("🕑 Ora: ", "");
+            console.log(notePBAttuale);
+            notePBAttuale = notePBAttuale.replace(foundOra[0], "");
+            console.log(notePBAttuale);
+            notePBAttuale = notePBAttuale.replace("\n", "");
+            console.log(notePBAttuale);
+          }
+
+          var notePBRimozione = JSON.stringify(localStorage.notePB);
+          var notePBDaRimuovere = "\\\""+notePBAttuale+"\\\"";
+
+          notePBRimozione=notePBRimozione.replace(notePBDaRimuovere, "");
+          notePBRimozione=notePBRimozione.replace("\,\]", "\]");
+          notePBRimozione=notePBRimozione.replace("\[\,", "\[");
+          notePBRimozione=notePBRimozione.replace("\,\,", "\,");
+          notePBRimozione=notePBRimozione.replace("\\\"\\\"", "");
+          notePBRimozione=notePBRimozione.replace("\\\"\\\"\,", "");
+          notePBRimozione=notePBRimozione.replace("\,\\\"\\\"", "");
+          
+          localStorage.setItem('notePB', JSON.parse(notePBRimozione));
+        }
+      }
+    }
+  }
+
+  function resetStorageUtenti(){
+    localStorage.notePB="[]";
+    window.location.reload();
+  }
+
+  function alertResetStorage(){
+    var r = confirm("Premi ok per resettare la lista");
+    if (r == true) {
+      resetStorageUtenti();
+    }
+  }
+
+  function openForm() {
+    var element = document.getElementById("menuNascosto");
+    element.classList.toggle("nascosto");
+  }
+</script>
+
+</body>
+<!--
+  Il codice è mezzo preso in prestito dagli esempi su w3schools,
+  il resto è magia del mio cuore.
+
+  Le icone sono di https://icons8.it/
+-->
+</html>

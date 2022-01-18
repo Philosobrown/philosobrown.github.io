@@ -1,0 +1,214 @@
+html{
+  background: #ECEFF4;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: Arial;
+  margin: 0;
+  min-width: 250px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 10px;
+  list-style-type: none;
+  background: #E3E7EF;
+  font-size: 18px;
+  transition: 0.2s;
+  overflow: auto;
+  
+  /*
+  border-bottom: 2px solid;
+  border-bottom-color: #303443;
+  */
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #ECEFF4;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #D8DEE9;
+}
+
+.dataOggi{
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #303443;
+  font-size: 18px;
+  color: #ECEFF4;
+}
+
+.close {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+  margin-right: 50px;
+}
+
+.close:hover {
+  background-color: #BF616A;
+  color: white;
+  height: 100%;
+  transition-duration: 0.3s;
+}
+
+.header {
+  background-color: #303443;
+  padding: 20px 20px 12px 20px;
+  color: white;
+  text-align: center;
+}
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.bordo{
+  border-top: 3px solid;
+  border-top-color: #303443;
+}
+
+hr {
+  border: 0;
+  margin: 5px 0px 5px 0px;
+}
+
+input {
+  background-color: #ECEFF4;
+  margin: 0;
+  width: calc(100% - 72px);
+  height: 36px;
+  border: none;
+  border-radius: 0;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+  outline: 0;
+  text-align: center;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+::placeholder {
+  text-align: center;
+}
+
+.baseBtn {
+  padding: 10px;
+  background: #D8DEE9;
+  height: 36px;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.baseBtn:hover {
+  background-color: #7F7F91;
+  color: #ECEFF4;
+}
+
+.addBtn {
+  width: 36px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.menuBtn {
+  width: 36px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.cancBtn {
+  width: 36px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.varioBtn {
+  width: 50%;
+  outline: 0;
+  border: 0;
+  border-top: 4px solid;
+  border-bottom: 0;
+  border-color: #303443;
+  height: 50px;
+}
+
+.btnL {
+  border-top-left-radius: 15px;
+  border-left: 4px solid;
+  border-right: 2px solid;
+  border-color: #303443;
+}
+
+.btnC {
+  border-right: 2px solid;
+  border-left: 2px solid;
+  border-color: #303443;
+}
+
+.btnR {
+  border-top-right-radius: 15px;
+  border-right: 4px solid;
+  border-left: 2px solid;
+  border-color: #303443;
+}
+
+.form-cancella {
+  position: fixed;
+  bottom: 0;
+  left: 15%;
+  right: 15%;
+  background-color: #303443;
+  color: white;
+  text-align: center;
+  width: 70%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.nascosto{
+  display: none;
+}
+
+.classePadding{
+  padding-left: 50px;
+}
