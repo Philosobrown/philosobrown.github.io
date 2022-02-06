@@ -8,19 +8,27 @@
 			html {
 				background-color: #303443;
 			    font-family: "Calibri";
-			    font-size: 10vh;
+			    font-size: 8ch;
 			    color: #ffffff;
 				user-select: none;
 				-webkit-tap-highlight-color: transparent;
 			}
 
-			li {
-				list-style-type: none;
-				padding: 20px;
-				border-bottom: #303443 solid 5px;
+			body{
+				display: grid;
+				height: 40vh;
+				grid-gap: 15px;
+				grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
 			}
 
-			.centro {
+			.card {
+				background-color: #434C5E;
+				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				transition: 0.3s;
+			}
+
+			.container {
+				padding: 2px 16px;
 				text-align: center;
 			}
 
@@ -28,14 +36,44 @@
 
 	</head>
 	<body onload="ordineFunzioni();">
-		<ul>
-			<li><div id="valoreBTC">Caricamento...</div></li>
-			<li><div id="valoreETH">Caricamento...</div></li>
-			<li><div id="valoreADA">Caricamento...</div></li>
-			<li><div id="valoreSOL">Caricamento...</div></li>
-			<li><div id="valoreDOT">Caricamento...</div></li>
-		</ul>
+		<div class="card">
+			<div class="container">
+				Bitcoin
+				<div id="valoreBTC">Caricamento...</div>
+			</div>
+		</div>
 
+		<div class="card">
+			<div class="container">
+				Ethereum
+				<div id="valoreETH">Caricamento...</div>
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="container">
+				Cardano
+				<div id="valoreADA">Caricamento...</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="container">
+				Solana
+				<div id="valoreSOL">Caricamento...</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="container">
+				Polkadot
+				<div id="valoreDOT">Caricamento...</div>
+			</div>
+		</div>
+		
+		
+		
+		
 		<script>
 			let intervallo;
 
@@ -52,7 +90,7 @@
 							var datiResponse=xhrBTC.responseText;
 							var datiResponseJSON = JSON.parse(datiResponse);
 							var drj = datiResponseJSON["data"]["amount"];
-							document.getElementById("valoreBTC").innerHTML = "Bitcoin vale "+drj+"€";
+							document.getElementById("valoreBTC").innerHTML = drj+"€";
 						}
 					}
 				};
@@ -66,7 +104,7 @@
 							var datiResponse=xhrETH.responseText;
 							var datiResponseJSON = JSON.parse(datiResponse);
 							var drj = datiResponseJSON["data"]["amount"];
-							document.getElementById("valoreETH").innerHTML =  "Ethereum vale "+drj+"€";
+							document.getElementById("valoreETH").innerHTML = drj+"€";
 						}
 					}
 				};
@@ -80,7 +118,7 @@
 							var datiResponse=xhrADA.responseText;
 							var datiResponseJSON = JSON.parse(datiResponse);
 							var drj = datiResponseJSON["data"]["amount"];
-							document.getElementById("valoreADA").innerHTML =  "Cardano vale "+drj+"€";
+							document.getElementById("valoreADA").innerHTML = drj+"€";
 						}
 					}
 				};
@@ -94,7 +132,7 @@
 							var datiResponse=xhrSOL.responseText;
 							var datiResponseJSON = JSON.parse(datiResponse);
 							var drj = datiResponseJSON["data"]["amount"];
-							document.getElementById("valoreSOL").innerHTML =  "Solana vale "+drj+"€";
+							document.getElementById("valoreSOL").innerHTML = drj+"€";
 						}
 					}
 				};
@@ -108,7 +146,7 @@
 							var datiResponse=xhrDOT.responseText;
 							var datiResponseJSON = JSON.parse(datiResponse);
 							var drj = datiResponseJSON["data"]["amount"];
-							document.getElementById("valoreDOT").innerHTML =  "Polkadot vale "+drj+"€";
+							document.getElementById("valoreDOT").innerHTML = drj+"€";
 						}
 					}
 				};
