@@ -1,3 +1,4 @@
+/* Corpo principale */
 html::-webkit-scrollbar {
     display: none;
 }
@@ -5,16 +6,22 @@ html::-webkit-scrollbar {
 html {
     -ms-overflow-style: none;
     scrollbar-width: none;
+
     background-color: #e5e9f0;
+    
+    font-family: system-ui, sans-serif;
 }
 
 body {
-    width: 85%;
+    width: 90%;
     background-color: #eceff4;
     margin: 0 auto 0 auto;
-    padding: 20px;   
+    padding: 20px;
+}
 
-    font-family: system-ui, sans-serif;
+/* Elementi principali */
+h1, h2, h3 {
+    font-weight: 600;
 }
 
 a {
@@ -22,27 +29,34 @@ a {
     color: inherit;
 }
 
+hr {
+    border: 1px dotted #d8dee9;
+}
+
+div > p:nth-child(2) {
+    font-style: italic;
+}
+
+/* Classi */
 .C0 {
-    border: solid #d8dee9;
-    border-width: 2px;
+    border-left: 2px solid #d8dee9;
     border-radius: 15px;
-    padding: 12px 8px 12px 8px;
+
+    padding: 8px;
     margin: 8px;
 }
 
 .C0 > h3 {
-    margin: 4px 8px 4px 12px;
     font-size: 23px;
-    font-weight: 600;
+    margin: 4px 8px 4px 12px;
 }
 
 .C1 {
-    margin: 8px 8px 12px 8px;
-    padding-left: 12px;
-    
-    border-left: solid #d8dee9;
-    border-width: 2px;
+    border-left: 2px solid #d8dee9;
     border-radius: 12px;
+    
+    padding: 4px 0px 8px 12px;
+    margin: 8px 8px 12px 8px;
 }
 
 .C1 > p {
@@ -50,9 +64,10 @@ a {
 }
 
 .C1 > ul {
-    margin: 0px;
+    list-style-type: "•  ";
+
     padding-left: 24px;
-    list-style-type: "•  ";  
+    margin: 0px;
 }
 
 .C2 {
@@ -60,19 +75,12 @@ a {
     font-weight: 500;
 }
 
-h1 {
-    font-weight: 600;
-}
-
-h2 {
-    font-weight: 600;
-    
-    padding-bottom: 8px;  
-    
+.area {
     border-bottom: 2px solid #d8dee9;
+    padding-bottom: 8px;
 }
 
-.Bordo {
+.sezione {
     border: solid #d8dee9;
     border-width: 2px;
     border-radius: 15px;
@@ -80,3 +88,5 @@ h2 {
     padding: 12px 8px 12px 8px;
     margin: 8px;
 }
+
+/* Analisi */
