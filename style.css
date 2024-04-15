@@ -9,14 +9,18 @@ html {
 
     background-color: #e5e9f0;
     
-    font-family: system-ui, sans-serif;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
 }
 
 body {
     width: 90%;
     background-color: #eceff4;
-    margin: 0 auto 0 auto;
+    
     padding: 20px;
+    margin: 0 auto 0 auto;
 }
 
 /* Elementi principali */
@@ -40,7 +44,8 @@ div > p:nth-child(2) {
 /* Classi */
 .C0 {
     border-left: 2px solid #d8dee9;
-    border-radius: 15px;
+    border-top: 2px solid #d8dee9;
+    border-radius: 12px 0px 0px 0px;
 
     padding: 8px;
     margin: 8px;
@@ -48,12 +53,14 @@ div > p:nth-child(2) {
 
 .C0 > h3 {
     font-size: 23px;
+
     margin: 4px 8px 4px 12px;
 }
 
 .C1 {
     border-left: 2px solid #d8dee9;
-    border-radius: 12px;
+    border-top: 2px solid #d8dee9;
+    border-radius: 12px 0px 0px 0px;
     
     padding: 4px 0px 8px 12px;
     margin: 8px 8px 12px 8px;
@@ -77,6 +84,7 @@ div > p:nth-child(2) {
 
 .area {
     border-bottom: 2px solid #d8dee9;
+    
     padding-bottom: 8px;
 }
 
