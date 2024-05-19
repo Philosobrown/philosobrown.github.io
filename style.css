@@ -1,3 +1,18 @@
+/* CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variabili */
+
+:root {
+    --bordi-cl: #d8dee9;
+    --background-0-cl: #e5e9f0;
+    --background-1-cl: #eceff4;
+}
+
 /* Corpo principale */
 html::-webkit-scrollbar {
     display: none;
@@ -7,7 +22,7 @@ html {
     -ms-overflow-style: none;
     scrollbar-width: none;
 
-    background-color: #e5e9f0;
+    background-color: var(--background-0-cl);
     
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
@@ -16,11 +31,10 @@ html {
 }
 
 body {
-    width: 90%;
-    background-color: #eceff4;
+    background-color: var(--background-1-cl);
     
     padding: 20px;
-    margin: 0 auto 0 auto;
+    margin: 30px;
 }
 
 /* Elementi principali */
@@ -33,68 +47,48 @@ a {
     color: inherit;
 }
 
-hr {
-    border: 1px dotted #d8dee9;
-}
-
 div > p:nth-child(2) {
     font-style: italic;
 }
 
+section > h2 {
+    font-size: 23px;
+    
+    padding-top: 8px;
+}
+
 /* Classi */
 .C0 {
-    border-left: 2px solid #d8dee9;
-    border-top: 2px solid #d8dee9;
+    border-left: 2px solid var(--bordi-cl);
+    border-top: 2px solid var(--bordi-cl);
     border-radius: 12px 0px 0px 0px;
 
-    padding: 8px;
-    margin: 8px;
+    padding: 6px;
+    margin-top: 8px;
 }
 
 .C0 > h3 {
     font-size: 23px;
 
-    margin: 4px 8px 4px 12px;
+    margin: 8px 12px 8px 12px;
 }
 
 .C1 {
-    border-left: 2px solid #d8dee9;
-    border-top: 2px solid #d8dee9;
+    border-left: 2px solid var(--bordi-cl);
+    border-top: 2px solid var(--bordi-cl);
     border-radius: 12px 0px 0px 0px;
     
-    padding: 4px 0px 8px 12px;
-    margin: 8px 8px 12px 8px;
-}
-
-.C1 > p {
-    margin: 4px;
+    padding: 6px 6px 6px 12px;
+    margin: 8px 0px 0px 12px;
 }
 
 .C1 > ul {
     list-style-type: "•  ";
 
-    padding-left: 24px;
-    margin: 0px;
+    padding-left: 18px;
 }
 
 .C2 {
     font-size: 21px;
     font-weight: 500;
 }
-
-.area {
-    border-bottom: 2px solid #d8dee9;
-    
-    padding-bottom: 8px;
-}
-
-.sezione {
-    border: solid #d8dee9;
-    border-width: 2px;
-    border-radius: 15px;
-    
-    padding: 12px 8px 12px 8px;
-    margin: 8px;
-}
-
-/* Analisi */
