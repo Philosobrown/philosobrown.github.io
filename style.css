@@ -92,3 +92,7 @@ section > h2 {
     font-size: 21px;
     font-weight: 500;
 }
+
+.space {
+    padding-top: 12px;
+}
